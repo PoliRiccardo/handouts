@@ -20,10 +20,14 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 package it.unimi.di.prog2.e05;
+
 import java.util.Scanner;
 
 /** Client for the {@link ArrayUtils} class. */
 public class ArrayUtilsClient {
+
+  /** . */
+  private ArrayUtilsClient() {}
 
   /** The fixed size of the input and array. */
   private static final int SIZE = 10;
@@ -40,7 +44,7 @@ public class ArrayUtilsClient {
     try (Scanner scanner = new Scanner(System.in)) {
       for (int i = 0; i < SIZE; i++) array[i] = scanner.nextInt();
     }
-    int index = ArrayUtils.binSearch(array, Integer.parseInt(args[0]));
+    int index = ArrayUtils.binarySearch(array, Integer.parseInt(args[0]));
     System.out.println(index);
   }
 }

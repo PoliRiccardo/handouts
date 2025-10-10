@@ -27,26 +27,29 @@ public class ArrayUtils {
   /** . */
   private ArrayUtils() {}
 
-  /*
-   * Specify and implement a method that given a sorted array of integers and a
-   * value, returns the index of the value if it is present in the array.
+  /**
+   * Finds the index (or insertion point) of an integer in an array of integers in increasing order.
    *
-   * Hint: https://research.google/blog/extra-extra-read-all-about-it-nearly-all-binary-searches-and-mergesorts-are-broken/
+   * <ul>
+   *   <li><b>Requires:</b> {@code haystack} is not {@code null} and is sorted in increasing order.
+   *   <li><b>Modifies:</b> nothing.
+   *   <li><b>Effects:</b> if {@code haystack} contains {@code needle}, returns the index of the
+   *       first occurrence of {@code needle} in {@code haystack}; otherwise, returns {@code
+   *       -(insertion_point) - 1} where {@code insertion_point} is the index of the first integer
+   *       greater than {@code needle}; note that this implies that the return value is non-negative
+   *       iff {@code haystack} contains {@code needle}.
+   * </ul>
    */
-  public static int binSearch(int[] v , int q ) {
-    int low = 0;
-    int high = v.length - 1;
-    while (low<=high) {
-      int m = low + ((high - low) / 2);
-      if (v[m]==q ){
-       return m;
-      }
-      if (v[m]<q){
-        high = m+1;
-      } else {
-        low = m-1;
-      }
+  @SuppressWarnings("doclint:missing") // this is because we are still Lisokv' style
+  static int binarySearch(final int[] haystack, final int needle) {
+    int lo = 0;
+    int hi = haystack.length - 1;
+    while (lo <= hi) {
+      int mid = lo + (hi - lo) / 2;
+      if (needle < haystack[mid]) hi = mid - 1;
+      else if (needle > haystack[mid]) lo = mid + 1;
+      else return mid;
     }
-    return -1;
+    return -lo - 1;
   }
 }
