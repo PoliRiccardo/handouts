@@ -40,7 +40,11 @@ public class MathFunctions {
 
     // Provide an alternative implementation based on Newton's method.
     // Hint: https://math.mit.edu/~stevenj/18.335/newton-sqrt.pdf
-
-    return 0;
+    double x0 = x>1 ? x/2 : 1 , xn;
+    do {
+      xn = 0.5*(x0 + x/x0);
+      x0 = xn;
+    } while (Math.abs(xn*xn - x)> 0.001 );
+    return xn;
   }
 }

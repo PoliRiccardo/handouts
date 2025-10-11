@@ -62,11 +62,34 @@ public class ArrayUtils {
    * insertionPoint} (inclusive) to the end of the array, and then inserts {@code value} at {@code
    * insertionPoint}.
    */
-  static void insertAt(int[] array, int insertionPoint, int value) {}
+  static void insertAt(int[] array, int insertionPoint, int value) {
+    /*
+     *  int previus , next = array[insertionPoint];
+        array[insertionPoint] = value;
+        for (int i = insertionPoint + 1; i < array.length ; i++) {
+          previus = next;
+          next = array[i];
+          array[i] = previus;
+        }
+     */
+    
+    for (int i = array.length - 1; i > insertionPoint; i--) {
+        array[i] = array[i - 1];
+    }
+    array[insertionPoint] = value;
+  }
 
   /* Specify and implement a method that fills the given array with the given value. */
-  static void fill(int[] array, int value) {}
+  static void fill(int[] array, int value) {
+    for (int i = 0; i < array.length; i++) { 
+      array[i] = value;
+    }
+  }
 
   /* Specify and implement a method that prints the given array, one element per line. */
-  static void print(int[] array) {}
+  static void print(int[] array) {
+    for (int i : array) {
+      System.out.println(i);
+    }
+  }
 }

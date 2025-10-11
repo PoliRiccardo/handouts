@@ -21,6 +21,8 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e06;
 
+import java.util.Scanner;
+
 /** Client code for {@link ArrayUtils}. */
 public class ArrayUtilsClient {
 
@@ -33,7 +35,7 @@ public class ArrayUtilsClient {
    * standard input and inserts them in the array if not already present,
    * keeping the array sorted and of the same size (discarding the last element
    * at every insertion). Finally, prints the array.
-
+  */
    public static void main(String[] args) {
 
     int size = Integer.parseInt(args[0]);
@@ -54,6 +56,6 @@ public class ArrayUtilsClient {
     ArrayUtils.print(array);
   }
 
-  */
+  
 
 }
