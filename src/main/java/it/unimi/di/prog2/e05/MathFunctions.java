@@ -32,4 +32,17 @@ public class MathFunctions {
    *
    * Hint: https://en.wikipedia.org/wiki/Bisection_method
    */
+  public static double sqrt(double x){
+   double low = 0, high = Math.max(1, x), mid;
+    do {
+        mid = (low + high) / 2.0;
+        if (mid * mid < x) {
+            low = mid;
+        } else {
+            high = mid;
+        }
+    } while (Math.abs(mid * mid - x) > 0.001);
+
+    return mid;
+  }
 }

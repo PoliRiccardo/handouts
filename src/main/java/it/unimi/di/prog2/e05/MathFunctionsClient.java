@@ -21,6 +21,10 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e05;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 /** Client for the {@link MathFunctions} class. */
 public class MathFunctionsClient {
 
@@ -31,4 +35,16 @@ public class MathFunctionsClient {
    * (when possible), and prints {@code true} or {@code false} depending on whether the result is
    * correct within {@code 10^-3} or not.
    */
+  public static void main(String args[]){
+    List<Double> values = new ArrayList<>();
+    try(Scanner sc = new Scanner(System.in)){
+      while (sc.hasNextDouble()) {
+         values.add(sc.nextDouble());
+      }
+    }
+    for (Double v : values) {
+      Double sqrt = MathFunctions.sqrt(v);
+      System.out.println(Math.abs(sqrt*sqrt - v) < 0.001);
+    }
+  }
 }
