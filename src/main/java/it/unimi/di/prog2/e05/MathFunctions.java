@@ -32,6 +32,18 @@ public class MathFunctions {
    *
    * Hint: https://en.wikipedia.org/wiki/Bisection_method
    */
+
+  /**
+   * Calcola la radice quadrata di un valore in virgola mobile utilizzando il metodo della bisezione.
+   *
+   * <p>In particolare, restituisce la radice quadrata di {@code x} calcolata
+   * tramite il metodo della bisezione.  
+   * La precisione del risultato è tale che {@code |sqrt(x)^2 - x| < 10^-3}.
+   *
+   * @param x il valore di cui calcolare la radice quadrata; deve essere non negativo
+   * @return un'approssimazione della radice quadrata di {@code x}
+   */
+
   public static double sqrt(double x){
    double low = 0, high = Math.max(1, x), mid;
     do {

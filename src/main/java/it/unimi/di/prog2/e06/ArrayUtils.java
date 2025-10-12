@@ -62,6 +62,20 @@ public class ArrayUtils {
    * insertionPoint} (inclusive) to the end of the array, and then inserts {@code value} at {@code
    * insertionPoint}.
    */
+
+  /**
+   * Inserisce un intero in una posizione specificata di un array, 
+   * spostando tutti gli elementi dalla posizione indicata (inclusa) di una posizione verso destra.
+   *
+   * <p>In particolare, inserisce {@code value} nella posizione {@code insertionPoint} dell'array.  
+   * Tutti gli elementi a partire da tale posizione vengono spostati in avanti di un indice.  
+   * Se l'array è pieno (ovvero non ha capacità aggiuntiva), l'ultimo elemento viene scartato.
+   *
+   * @param array l'array di interi (non {@code null})
+   * @param insertionPoint l'indice in cui inserire {@code value}; deve essere compreso tra {@code 0} (incluso) e {@code array.length} (escluso)
+   * @param value il valore da inserire alla posizione {@code insertionPoint}
+   */
+
   static void insertAt(int[] array, int insertionPoint, int value) {
     /*
      *  int previus , next = array[insertionPoint];
@@ -80,6 +94,16 @@ public class ArrayUtils {
   }
 
   /* Specify and implement a method that fills the given array with the given value. */
+
+  /**
+   * Riempie l'array specificato con il valore fornito.
+   *
+   * <p>In particolare, assegna {@code value} a ogni elemento di {@code array}.
+   *
+   * @param array l'array di interi da riempire (non {@code null})
+   * @param value il valore da assegnare a ogni elemento dell'array
+   */
+
   static void fill(int[] array, int value) {
     for (int i = 0; i < array.length; i++) { 
       array[i] = value;
@@ -87,6 +111,16 @@ public class ArrayUtils {
   }
 
   /* Specify and implement a method that prints the given array, one element per line. */
+
+ /**
+   * Stampa su standard output ogni elemento dell'array specificato.
+   *
+   * <p>In particolare, stampa ciascun elemento di {@code array} su una nuova riga.
+   *
+   * @param array l'array di interi da stampare (non {@code null})
+   */
+
+
   static void print(int[] array) {
     for (int i : array) {
       System.out.println(i);
