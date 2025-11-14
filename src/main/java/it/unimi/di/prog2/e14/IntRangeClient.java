@@ -22,6 +22,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.e14;
 
 import java.util.Iterator;
+import java.util.Scanner;
 
 /** A class to test int ranges. */
 public class IntRangeClient {
@@ -72,15 +73,19 @@ public class IntRangeClient {
    *   <li>the first integer in the range (if any),
    *   <li>the last integer in the range (if different from the first).
    * </ul>
+   * 
+   *
+  
+  */
+ 
+  /*
    *
    * @param args not used.
    */
 
-  /*- Uncomment and complete once you have implemented the range class
-
     public static void main(String[] args) {
 
-      // declare the range...
+      IntRange range = new IntRange();
 
       try (Scanner sc = new Scanner(System.in)) {
         while (sc.hasNext()) {
@@ -88,22 +93,21 @@ public class IntRangeClient {
           int value = sc.nextInt();
           switch (command) {
             case 'F':
-              // set the from the range
+              range.setFrom(value);
               break;
             case 'T':
-              // set the to the range
+              range.setTo(value);
               break;
             case 'S':
-              // set the step the range
+              range.setStep(value);
               break;
             default:
               throw new IllegalArgumentException("Unknown command: " + command);
           }
         }
       }
-      Iterator<Integer> it = // get the iterator from the range;
+      Iterator<Integer> it = range.iterator();
       printIterationsFirstLast(it);
     }
 
-  */
 }

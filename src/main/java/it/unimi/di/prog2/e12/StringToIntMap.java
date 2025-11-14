@@ -21,7 +21,10 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e12;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  * A map from {@link String} to {@link Integer}.
@@ -37,8 +40,33 @@ public class StringToIntMap {
 
   // Note: do not use the Map in Java Collections, the point is to implement it from scratch!
 
+    /** A list containing the keys. */
+   private final List<String> keys;
+
+  /** A list containing the values. */
+    private final List<Integer> values;
+
+  /*-
+   * AF:
+   *
+   * AF(Keys, values)=
+   *   una mappa dove keys.get(i) è associato a values.get(i) per ogni i in [0,keys.size()]
+   *   
+   *
+   * RI:
+   *  Keys non è null e non contiene nulls
+   *  Values non è null e non contiene nulls
+   *  keys.size() == value.size()
+   * 
+   */
+
+
+
   /** Creates a new empty map. */
-  public StringToIntMap() {}
+  public StringToIntMap() {
+    keys = new ArrayList<>();
+    values = new ArrayList<>();
+  }
 
   /**
    * Returns the size of this map.
@@ -46,7 +74,7 @@ public class StringToIntMap {
    * @return the number of key-value mappings in this map.
    */
   public int size() {
-    return 0;
+    return keys.size();
   }
 
   /**
@@ -55,7 +83,7 @@ public class StringToIntMap {
    * @return {@code true} iff this map contains no key-value mappings.
    */
   public boolean isEmpty() {
-    return false;
+    return keys.isEmpty();
   }
 
   /**
@@ -65,7 +93,7 @@ public class StringToIntMap {
    * @return {@code true} iff this map contains a key-value mappings with the given {@code key}.
    */
   public boolean containsKey(String key) {
-    return false;
+    return keys.contains(key);
   }
 
   /**
@@ -75,7 +103,7 @@ public class StringToIntMap {
    * @return {@code true} iff this map contains a key-value mappings with the given {@code value}.
    */
   public boolean containsValue(int value) {
-    return false;
+    return values.contains(value);
   }
 
   /**
@@ -87,7 +115,10 @@ public class StringToIntMap {
    *     {@code null}.
    */
   public int get(String key) throws NoSuchElementException {
-    return 0;
+    if (key == null) throw new NoSuchElementException("La chiave è nulla");
+    int insertionPoint = keys.indexOf(key);
+    if (insertionPoint < 0) throw new NoSuchElementException("La chiave non è presente nella mappa");
+    return values.get(insertionPoint);
   }
 
   /**
@@ -98,8 +129,11 @@ public class StringToIntMap {
    * @throws IllegalArgumentException if the map already contain a mapping for the key.
    * @throws NullPointerException if the key is {@code null}.
    */
-  public void put(String key, int value) {}
-
+  public void put(String key, int value) {
+    if (keys.contains(Objects.requireNonNull(key , "La chiave non deve essere null"))) throw new IllegalArgumentException("chiave già presente");
+    keys.add(key);
+    values.add(value);
+  }
   /**
    * Removes the mapping for a key from this map if it is present.
    *
@@ -108,9 +142,38 @@ public class StringToIntMap {
    *     modified by this operation.
    */
   public boolean remove(String key) {
-    return false;
+    if (key == null) return false;
+    if (!keys.contains(key)) return false;
+    int insertionPoint = keys.indexOf(key);
+    keys.remove(insertionPoint);
+    values.remove(insertionPoint);
+    return true;
   }
 
   /** Removes all of the mappings from this map. */
-  public void clear() {}
+  public void clear() {
+    keys.clear();
+    values.clear();
+  }
+   @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (!(obj instanceof StringToIntMap other)) return false;
+    return keys.equals(other.keys) && values.equals(other.values);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(keys, values);
+  }
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("StringToIntMap: {");
+    for (int i = 0; i < keys.size(); i++) {
+      sb.append(keys.get(i) + "->" + values.get(i));
+      if (i < keys.size() - 1) sb.append(", ");
+    }
+    sb.append("}");
+    return sb.toString();
+  }
 }

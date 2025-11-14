@@ -22,6 +22,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.e14;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /** Utility class with some string iterators. */
 public class StringIterators {
@@ -38,16 +39,27 @@ public class StringIterators {
   public static Iterator<String> evenIterator(final Iterator<String> it) {
     return new Iterator<>() {
 
-      // EXERCISE: complete the implementation
+      private String next = null;
 
       @Override
       public boolean hasNext() {
-        throw new UnsupportedOperationException("Unimplemented method 'hasNext'");
+        if(next != null) return true;
+        while (it.hasNext()) {
+          String s = it.next();
+          if (s.length() % 2 == 0){
+            next = s;
+            return true;
+          }
+        }
+        return false;
       }
 
       @Override
       public String next() {
-        throw new UnsupportedOperationException("Unimplemented method 'next'");
+        if (!hasNext()) throw new NoSuchElementException();
+        String re = next;
+        next = null;
+        return re;
       }
     };
   }
@@ -61,16 +73,25 @@ public class StringIterators {
   public static Iterator<String> uppercase(final Iterator<String> it) {
     return new Iterator<>() {
 
-      // EXERCISE: complete the implementation
+      private String next = null;
 
       @Override
       public boolean hasNext() {
-        throw new UnsupportedOperationException("Unimplemented method 'hasNext'");
+        if(next != null) return true;
+        while (it.hasNext()) {
+          String s = it.next();
+           next = s.toUpperCase();
+          return true;
+        }
+        return false;
       }
 
       @Override
       public String next() {
-        throw new UnsupportedOperationException("Unimplemented method 'next'");
+        if (!hasNext()) throw new NoSuchElementException();
+          String re = next;
+          next = null;
+          return re;
       }
     };
   }
